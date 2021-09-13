@@ -1,0 +1,15 @@
+.item {
+  height: 40px;
+  color: rgb(88, 88, 88);
+
+  background-color: rgb(255, 255, 255);
+}
+
+.item:nth-child(2n) {
+  background-color: rgba(201, 200, 200, 0.6);
+}
+
+.item:hover,
+.item:nth-child(2n):hover {
+  background-color: rgba(171, 248, 171, 0.836);
+}
