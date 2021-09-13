@@ -5,6 +5,7 @@ import UserList from './components/UserList'
 import UserFilter from './components/UserFilter'
 import UserFilterState from './components/UserFilterState'
 import UserInfo from './components/UserInfo'
+import PagePaginationButton from './components/PagePaginationButton'
 
 import './App.css'
 
@@ -13,14 +14,15 @@ function App() {
   const [filter, setFilter] = useState('')
   const [userState, setUserState] = useState('')
   const [email, setEmail] = useState('')
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await API.fetchData()
-        //console.log(response)
-        const usersResponse = response.slice(0, 20)
-        setUsers(usersResponse)
+        console.log(response)
+
+        setUsers(response)
       } catch (error) {
         console.log(error.message)
       }
@@ -29,24 +31,26 @@ function App() {
     fetchUsers()
   }, [])
 
-  //фильтр по имени
   const changeFilter = (e) => {
     setFilter(e.target.value)
   }
 
+  //фильтр по имени
   const filterUsersByName = () =>
-    users.filter((user) =>
-      user.firstName.toLowerCase().includes(filter.toLowerCase())
+    users.filter(
+      (user) =>
+        user.firstName.toLowerCase().includes(filter.toLowerCase()) &&
+        user.adress.state.includes(userState)
     )
   //
-
+  //записывает значение в стейт
   const onStateChange = (data) => {
     setUserState(data)
   }
 
   //фильтр по штату
-  const filterUsersByState = () => {
-    return users.filter((user) =>
+  const filterUsersByState = (array) => {
+    return array.filter((user) =>
       user.adress.state.toLowerCase().includes(userState.toLowerCase())
     )
   }
@@ -56,28 +60,50 @@ function App() {
     if (e.target.tagName !== 'TD') {
       return
     }
-    // console.log('Кликнули по table row')
-    // console.log(e.target.dataset.source)
 
     setEmail(e.target.dataset.source)
   }
 
-  const filteredByName = filterUsersByName()
-  const filteredByState = filterUsersByState()
-  const foo = userState === '' ? filteredByName : filteredByState
+  const filtered = filterUsersByName()
+
+  filterUsersByState(filtered)
 
   //User personal information
 
-  const personalInfo = () => filteredByName.find((item) => item.email === email)
+  const personalInfo = () => filtered.find((item) => item.email === email)
+
+  //Pagination
+  const pagePagination = (array) => {
+    return array.slice((page - 1) * 20, page * 20)
+  }
+
+  const handlePage = (currentPage) => {
+    setPage(currentPage)
+  }
 
   return (
     <div className="App">
       <UserFilter value={filter} onChange={changeFilter} />
-      <UserFilterState users={filteredByName} onChange={onStateChange} />
-      <button type="button" onClick={() => setUserState(foo)}>
+      <UserFilterState
+        users={users}
+        userState={userState}
+        onChange={onStateChange}
+      />
+      <button type="button" onClick={() => setUserState('')}>
         Reset
       </button>
-      <UserList users={foo} onClick={onRowClick} />
+      <UserList
+        page={page}
+        users={pagePagination(filtered)}
+        onClick={onRowClick}
+      />
+      {filtered.length > 20 && (
+        <PagePaginationButton
+          length={filtered.length}
+          page={page}
+          handlePage={handlePage}
+        />
+      )}
       {personalInfo() && <UserInfo user={personalInfo()} />}
     </div>
   )

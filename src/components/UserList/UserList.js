@@ -1,7 +1,7 @@
 import UserListItem from '../UserListItem'
 import './UserList.css'
 
-const UserList = ({ users, onClick }) => {
+const UserList = ({ users, page, onClick }) => {
   return (
     <table className="table-container">
       <thead>
@@ -20,7 +20,7 @@ const UserList = ({ users, onClick }) => {
           ({ firstName, lastName, email, phone, adress: { state } }, index) => (
             <UserListItem
               key={email}
-              id={index + 1}
+              id={index + 1 + (page - 1) * 20}
               firstName={firstName}
               lastName={lastName}
               email={email}
