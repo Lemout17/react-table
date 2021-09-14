@@ -15,13 +15,14 @@ function App() {
   const [userState, setUserState] = useState('')
   const [email, setEmail] = useState('')
   const [page, setPage] = useState(1)
+  const [sortedField, setSortedField] = useState(null)
+  const [sortConfig, setSortConfig] = useState(false)
 
   //fetch data from backend server
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await API.fetchData()
-        console.log(response)
 
         setUsers(response)
       } catch (error) {
@@ -73,18 +74,8 @@ function App() {
     setPage(currentPage)
   }
 
-  console.log('SORT', filtered.sort())
-
   //Sort columns
-  const sortGrid = (colNum, type) => {
-    switch (type) {
-      case 'number':
-        return filtered.sort((a, b) => a - b)
-
-      default:
-        break
-    }
-  }
+  let sortedProducts = [...filtered]
 
   const onClickSort = (e) => {
     if (e.target.tagName !== 'TH') {
@@ -93,8 +84,36 @@ function App() {
 
     let th = e.target
 
-    console.log(`${th.cellIndex}/${th.dataset.type}`)
-    sortGrid(th.cellIndex, th.dataset.type)
+    if (sortedField === th.dataset.type) {
+      if (sortConfig) {
+        setSortConfig(false)
+      } else {
+        setSortConfig(true)
+      }
+    }
+
+    setSortedField(th.dataset.type)
+  }
+
+  if (sortedField !== null) {
+    sortedProducts.sort((a, b) => {
+      let x = a[sortedField]
+      let y = b[sortedField]
+
+      if (sortedField === 'adress') {
+        x = a[sortedField].state
+        y = b[sortedField].state
+      }
+
+      if (x < y) {
+        return sortConfig ? -1 : 1
+      }
+      if (x > y) {
+        return sortConfig ? 1 : -1
+      }
+
+      return 0
+    })
   }
 
   return (
@@ -118,8 +137,14 @@ function App() {
       </div>
 
       <UserList
+        field={sortedField}
+        sort={sortConfig}
         page={page}
-        users={pagePagination(filtered)}
+        users={
+          sortedField
+            ? pagePagination(sortedProducts)
+            : pagePagination(filtered)
+        }
         onClick={onClickSort}
       />
 

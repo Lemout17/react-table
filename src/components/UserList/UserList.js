@@ -1,28 +1,37 @@
 import UserListItem from '../UserListItem'
 import './UserList.css'
 
-const UserList = ({ users, page, onClick }) => {
+import { ReactComponent as AscendSort } from '../../svg/sort-asc.svg'
+import { ReactComponent as DescendSort } from '../../svg/sort-desc.svg'
+
+const UserList = ({ users, page, sort, field, onClick }) => {
+  console.log('sort', sort)
   return (
     <table onClick={onClick} className="table-container">
+      <col width="50px" />
+
       <thead>
-        <tr className="title">
-          <th data-type="id" className="label">
+        <tr className="table-header-row">
+          <th data-type="id" className="table-header">
             id
           </th>
-          <th data-type="name" className="label">
+          <th data-type="firstName" className="table-header">
             First name
+            {field === 'firstName' && sort ? <AscendSort /> : <DescendSort />}
           </th>
-          <th data-type="surname" className="label">
+          <th data-type="lastName" className="table-header">
             Last name
+            {field === 'lastName' && sort ? <AscendSort /> : <DescendSort />}
           </th>
-          <th data-type="email" className="label">
-            Email
+          <th data-type="email" className="table-header">
+            Email {field === 'email' && sort ? <AscendSort /> : <DescendSort />}
           </th>
-          <th data-type="phone" className="label">
-            Phone
+          <th data-type="phone" className="table-header">
+            Phone {field === 'phone' && sort ? <AscendSort /> : <DescendSort />}
           </th>
-          <th data-type="state" className="label">
+          <th data-type="adress" className="table-header">
             State
+            {field === 'adress' && sort ? <AscendSort /> : <DescendSort />}
           </th>
         </tr>
       </thead>
