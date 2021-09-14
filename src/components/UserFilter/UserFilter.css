@@ -11,7 +11,13 @@
   width: 184px;
   padding: 5px;
   margin-left: 5px;
+
+  color: rgb(88, 88, 88);
   border: none;
   border-radius: 4px;
   outline: none;
+}
+
+.filter-input::placeholder {
+  color: rgb(204, 203, 203);
 }

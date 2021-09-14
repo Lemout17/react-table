@@ -35,7 +35,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   font-size: 16px;
-  background-color: rgb(197, 197, 197);
+
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
 }
 
 code {
@@ -48,6 +50,7 @@ li {
 }
 
 .active {
+  color: rgb(255, 255, 255);
   background-color: rgb(101, 195, 250);
 }
 
@@ -68,7 +71,7 @@ tr {
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 1px;
+  border-radius: 10px;
   background: rgb(80, 79, 79);
 }
 ::-webkit-scrollbar-thumb:hover {

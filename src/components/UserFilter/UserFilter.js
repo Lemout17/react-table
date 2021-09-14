@@ -9,6 +9,7 @@ const UserFilter = ({ value, onChange }) => {
         type="text"
         value={value}
         onChange={onChange}
+        placeholder="Enter name "
       />
     </label>
   )
