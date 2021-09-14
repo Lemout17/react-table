@@ -21,19 +21,13 @@ const UserFilterState = ({ users, userState, onChange }) => {
   return (
     <>
       {users && (
-        <select className="filterState-select" onChange={handleChange}>
-          {/* <option selected>Filter by state</option> */}
+        <select
+          value={userState ? userState : 'Filter by state'}
+          className="filterState-select"
+          onChange={handleChange}
+        >
           {statesArray.map((item) => (
-            <option
-              key={item}
-              value={item}
-              selected={
-                userState === item ||
-                (userState === '' && item === 'Filter by state')
-                  ? true
-                  : false
-              }
-            >
+            <option key={item} value={item}>
               {item}
             </option>
           ))}

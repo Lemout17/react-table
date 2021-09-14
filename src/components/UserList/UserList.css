@@ -24,6 +24,10 @@ tbody {
   color: white;
 }
 
+.table-header:first-child {
+  width: 50px;
+}
+
 .table-header svg {
   width: 20px;
   position: absolute;

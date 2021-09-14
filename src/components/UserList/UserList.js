@@ -5,11 +5,8 @@ import { ReactComponent as AscendSort } from '../../svg/sort-asc.svg'
 import { ReactComponent as DescendSort } from '../../svg/sort-desc.svg'
 
 const UserList = ({ users, page, sort, field, onClickSort, onClickRow }) => {
-  console.log('sort', sort)
   return (
     <table onClick={onClickSort} className="table-container">
-      <col width="50px" />
-
       <thead>
         <tr className="table-header-row">
           <th data-type="id" className="table-header">

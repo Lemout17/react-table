@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import API from './services/usersApi'
+import fetchData from './services/usersApi'
 
 import UserList from './components/UserList'
 import UserFilter from './components/UserFilter'
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await API.fetchData()
+        const response = await fetchData()
 
         setUsers(response)
       } catch (error) {
