@@ -1,0 +1,22 @@
+.pag-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pag-button {
+  padding: 15px;
+  margin-right: 5px;
+  transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pag-button:last-child {
+  margin-right: 0;
+}
+
+.pag-button:hover {
+  background-color: rgba(171, 248, 171, 0.836);
+}

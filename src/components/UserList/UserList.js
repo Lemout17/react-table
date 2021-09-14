@@ -3,19 +3,31 @@ import './UserList.css'
 
 const UserList = ({ users, page, onClick }) => {
   return (
-    <table className="table-container">
+    <table onClick={onClick} className="table-container">
       <thead>
         <tr className="title">
-          <th className="label">id</th>
-          <th className="label">First name</th>
-          <th className="label">Last name</th>
-          <th className="label">Email</th>
-          <th className="label">Phone</th>
-          <th className="label">State</th>
+          <th data-type="id" className="label">
+            id
+          </th>
+          <th data-type="name" className="label">
+            First name
+          </th>
+          <th data-type="surname" className="label">
+            Last name
+          </th>
+          <th data-type="email" className="label">
+            Email
+          </th>
+          <th data-type="phone" className="label">
+            Phone
+          </th>
+          <th data-type="state" className="label">
+            State
+          </th>
         </tr>
       </thead>
 
-      <tbody onClick={onClick}>
+      <tbody>
         {users.map(
           ({ firstName, lastName, email, phone, adress: { state } }, index) => (
             <UserListItem

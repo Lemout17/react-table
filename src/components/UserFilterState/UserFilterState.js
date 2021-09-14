@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import './UserFilterState.css'
 
 const UserFilterState = ({ users, userState, onChange }) => {
   const [val, setVal] = useState(userState)
@@ -20,7 +21,7 @@ const UserFilterState = ({ users, userState, onChange }) => {
   return (
     <>
       {users && (
-        <select onChange={handleChange}>
+        <select className="filterState-select" onChange={handleChange}>
           {/* <option selected>Filter by state</option> */}
           {statesArray.map((item) => (
             <option

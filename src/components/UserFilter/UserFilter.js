@@ -1,6 +1,8 @@
+import './UserFilter.css'
+
 const UserFilter = ({ value, onChange }) => {
   return (
-    <label>
+    <label className="filter-label">
       Search by name:
       <input
         className="filter-input"

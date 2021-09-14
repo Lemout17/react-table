@@ -16,6 +16,7 @@ function App() {
   const [email, setEmail] = useState('')
   const [page, setPage] = useState(1)
 
+  //fetch data from backend server
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -31,30 +32,27 @@ function App() {
     fetchUsers()
   }, [])
 
+  //set value from component <UserFilter />
   const changeFilter = (e) => {
     setFilter(e.target.value)
   }
 
-  //фильтр по имени
-  const filterUsersByName = () =>
+  //filter by name or state
+  const filterUsers = () =>
     users.filter(
       (user) =>
         user.firstName.toLowerCase().includes(filter.toLowerCase()) &&
         user.adress.state.includes(userState)
     )
-  //
-  //записывает значение в стейт
-  const onStateChange = (data) => {
-    setUserState(data)
+
+  const filtered = filterUsers()
+
+  //set userState from component <UserFilterState />
+  const onStateChange = (state) => {
+    setUserState(state)
   }
 
-  //фильтр по штату
-  const filterUsersByState = (array) => {
-    return array.filter((user) =>
-      user.adress.state.toLowerCase().includes(userState.toLowerCase())
-    )
-  }
-  //
+  //User personal information container
 
   const onRowClick = (e) => {
     if (e.target.tagName !== 'TD') {
@@ -63,12 +61,6 @@ function App() {
 
     setEmail(e.target.dataset.source)
   }
-
-  const filtered = filterUsersByName()
-
-  filterUsersByState(filtered)
-
-  //User personal information
 
   const personalInfo = () => filtered.find((item) => item.email === email)
 
@@ -81,22 +73,56 @@ function App() {
     setPage(currentPage)
   }
 
+  console.log('SORT', filtered.sort())
+
+  //Sort columns
+  const sortGrid = (colNum, type) => {
+    switch (type) {
+      case 'number':
+        return filtered.sort((a, b) => a - b)
+
+      default:
+        break
+    }
+  }
+
+  const onClickSort = (e) => {
+    if (e.target.tagName !== 'TH') {
+      return
+    }
+
+    let th = e.target
+
+    console.log(`${th.cellIndex}/${th.dataset.type}`)
+    sortGrid(th.cellIndex, th.dataset.type)
+  }
+
   return (
     <div className="App">
-      <UserFilter value={filter} onChange={changeFilter} />
-      <UserFilterState
-        users={users}
-        userState={userState}
-        onChange={onStateChange}
-      />
-      <button type="button" onClick={() => setUserState('')}>
-        Reset
-      </button>
+      <div className="filter-container">
+        <UserFilter value={filter} onChange={changeFilter} />
+        <div className="select-container">
+          <UserFilterState
+            users={users}
+            userState={userState}
+            onChange={onStateChange}
+          />
+          <button
+            className="select-button"
+            type="button"
+            onClick={() => setUserState('')}
+          >
+            Reset filter
+          </button>
+        </div>
+      </div>
+
       <UserList
         page={page}
         users={pagePagination(filtered)}
-        onClick={onRowClick}
+        onClick={onClickSort}
       />
+
       {filtered.length > 20 && (
         <PagePaginationButton
           length={filtered.length}

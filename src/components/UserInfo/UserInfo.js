@@ -5,13 +5,26 @@ const UserInfo = ({ user }) => {
   return (
     <div className="userInfo-container">
       <h3>Profile info:</h3>
-      <p>
-        Selected profile: <span>{`${user.firstName} ${user.lastName}`}</span>
+      <p className="userInfo-desc">
+        Selected profile:{' '}
+        <span className="userInfo-text">{`${user.firstName} ${user.lastName}`}</span>
       </p>
-      <p>Description: {loremIpsum({ avgSentencesPerParagraph: 1 })}</p>
-      <p>Adress: {user.adress.streetAddress}</p>
-      <p>City: {user.adress.city}</p>
-      <p>State: {user.adress.state}</p>
+      <p className="userInfo-desc">
+        Description:{' '}
+        <span className="userInfo-text">
+          {loremIpsum({ avgSentencesPerParagraph: 1 })}
+        </span>
+      </p>
+      <p className="userInfo-desc">
+        Adress:{' '}
+        <span className="userInfo-text">{user.adress.streetAddress}</span>
+      </p>
+      <p className="userInfo-desc">
+        City: <span className="userInfo-text">{user.adress.city}</span>
+      </p>
+      <p className="userInfo-desc">
+        State: <span className="userInfo-text">{user.adress.state}</span>
+      </p>
     </div>
   )
 }

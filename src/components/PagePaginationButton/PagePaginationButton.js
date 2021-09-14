@@ -1,8 +1,11 @@
+import './PagePaginationButton.css'
+
 const PagePaginationButton = ({ length, page, handlePage }) => {
   const pages = Math.ceil(length / 20)
   return (
-    <div>
+    <div className="pag-container">
       <button
+        className="pag-button"
         disabled={page === 1 ? true : false}
         onClick={() => {
           handlePage(page - 1)
@@ -11,6 +14,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
         Previous
       </button>
       <button
+        className="pag-button active"
         onClick={() => {
           handlePage(page)
         }}
@@ -19,6 +23,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
       </button>
       {page < pages && (
         <button
+          className="pag-button"
           onClick={() => {
             handlePage(page + 1)
           }}
@@ -28,6 +33,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
       )}
       {page < pages - 1 && (
         <button
+          className="pag-button"
           onClick={() => {
             handlePage(page + 2)
           }}
@@ -36,6 +42,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
         </button>
       )}
       <button
+        className="pag-button"
         disabled={page === pages ? true : false}
         onClick={() => {
           handlePage(page + 1)

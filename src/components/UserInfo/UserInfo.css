@@ -8,3 +8,11 @@
     0px 2px 1px rgba(0, 0, 0, 0.2);
   background-color: white;
 }
+
+.userInfo-desc {
+  font-weight: bold;
+}
+
+.userInfo-text {
+  font-weight: normal;
+}
