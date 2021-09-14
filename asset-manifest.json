@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/react-table/static/css/main.45c7ad52.chunk.css",
-    "main.js": "/react-table/static/js/main.08ecce7e.chunk.js",
-    "main.js.map": "/react-table/static/js/main.08ecce7e.chunk.js.map",
+    "main.css": "/react-table/static/css/main.5aa3737d.chunk.css",
+    "main.js": "/react-table/static/js/main.b2150d9f.chunk.js",
+    "main.js.map": "/react-table/static/js/main.b2150d9f.chunk.js.map",
     "runtime-main.js": "/react-table/static/js/runtime-main.6fde437b.js",
     "runtime-main.js.map": "/react-table/static/js/runtime-main.6fde437b.js.map",
     "static/js/2.f910e640.chunk.js": "/react-table/static/js/2.f910e640.chunk.js",
     "static/js/2.f910e640.chunk.js.map": "/react-table/static/js/2.f910e640.chunk.js.map",
     "index.html": "/react-table/index.html",
-    "static/css/main.45c7ad52.chunk.css.map": "/react-table/static/css/main.45c7ad52.chunk.css.map",
+    "static/css/main.5aa3737d.chunk.css.map": "/react-table/static/css/main.5aa3737d.chunk.css.map",
     "static/js/2.f910e640.chunk.js.LICENSE.txt": "/react-table/static/js/2.f910e640.chunk.js.LICENSE.txt",
     "static/media/index.css": "/react-table/static/media/Roboto-Regular.a8d6ac03.ttf",
     "static/media/sort-asc.26c0daf1.svg": "/react-table/static/media/sort-asc.26c0daf1.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.6fde437b.js",
     "static/js/2.f910e640.chunk.js",
-    "static/css/main.45c7ad52.chunk.css",
-    "static/js/main.08ecce7e.chunk.js"
+    "static/css/main.5aa3737d.chunk.css",
+    "static/js/main.b2150d9f.chunk.js"
   ]
 }
