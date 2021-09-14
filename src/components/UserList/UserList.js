@@ -4,10 +4,10 @@ import './UserList.css'
 import { ReactComponent as AscendSort } from '../../svg/sort-asc.svg'
 import { ReactComponent as DescendSort } from '../../svg/sort-desc.svg'
 
-const UserList = ({ users, page, sort, field, onClick }) => {
+const UserList = ({ users, page, sort, field, onClickSort, onClickRow }) => {
   console.log('sort', sort)
   return (
-    <table onClick={onClick} className="table-container">
+    <table onClick={onClickSort} className="table-container">
       <col width="50px" />
 
       <thead>
@@ -36,7 +36,7 @@ const UserList = ({ users, page, sort, field, onClick }) => {
         </tr>
       </thead>
 
-      <tbody>
+      <tbody onClick={onClickRow}>
         {users.map(
           ({ firstName, lastName, email, phone, adress: { state } }, index) => (
             <UserListItem

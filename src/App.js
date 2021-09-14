@@ -145,7 +145,8 @@ function App() {
             ? pagePagination(sortedProducts)
             : pagePagination(filtered)
         }
-        onClick={onClickSort}
+        onClickSort={onClickSort}
+        onClickRow={onRowClick}
       />
 
       {filtered.length > 20 && (
