@@ -54,6 +54,13 @@ function App() {
     setUserState(state)
   }
 
+  //reset filter by state
+  useEffect(() => {
+    if (userState === 'Filter by state') {
+      setUserState('')
+    }
+  }, [userState])
+
   //User personal information container
 
   const onRowClick = (e) => {
@@ -128,13 +135,6 @@ function App() {
             userState={userState}
             onChange={onStateChange}
           />
-          <button
-            className="select-button"
-            type="button"
-            onClick={() => setUserState('')}
-          >
-            Reset filter
-          </button>
         </div>
       </div>
 
