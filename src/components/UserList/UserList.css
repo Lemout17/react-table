@@ -25,7 +25,7 @@ tbody {
 }
 
 .table-header:first-child {
-  width: 50px;
+  width: 100px;
 }
 
 .table-header svg {

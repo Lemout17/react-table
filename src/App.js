@@ -24,8 +24,12 @@ function App() {
     const fetchUsers = async () => {
       try {
         const response = await fetchData()
+        const addIndex = response.map((el, idx) => {
+          el.index = idx
+          return el
+        })
 
-        setUsers(response)
+        setUsers(addIndex)
       } catch (error) {
         setError(error.message)
       }
@@ -48,6 +52,7 @@ function App() {
     )
   }
 
+  //array of filtered users
   const filtered = filterUsers()
 
   useEffect(() => {
@@ -129,6 +134,10 @@ function App() {
     })
   }
 
+  const paginated = sortedField
+    ? pagePagination(sortedProducts)
+    : pagePagination(filtered)
+
   return (
     <div className="App">
       <div className="filter-container">
@@ -149,11 +158,7 @@ function App() {
           field={sortedField}
           sort={sortConfig}
           page={page}
-          users={
-            sortedField
-              ? pagePagination(sortedProducts)
-              : pagePagination(filtered)
-          }
+          users={paginated}
           onClickSort={onClickSort}
           onClickRow={onRowClick}
         />
