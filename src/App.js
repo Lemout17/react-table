@@ -17,6 +17,7 @@ function App() {
   const [page, setPage] = useState(1)
   const [sortedField, setSortedField] = useState(null)
   const [sortConfig, setSortConfig] = useState(false)
+  const [error, setError] = useState('')
 
   //fetch data from backend server
   useEffect(() => {
@@ -26,7 +27,7 @@ function App() {
 
         setUsers(response)
       } catch (error) {
-        console.log(error.message)
+        setError(error.message)
       }
     }
 
@@ -108,6 +109,7 @@ function App() {
       if (x < y) {
         return sortConfig ? -1 : 1
       }
+
       if (x > y) {
         return sortConfig ? 1 : -1
       }
@@ -136,18 +138,22 @@ function App() {
         </div>
       </div>
 
-      <UserList
-        field={sortedField}
-        sort={sortConfig}
-        page={page}
-        users={
-          sortedField
-            ? pagePagination(sortedProducts)
-            : pagePagination(filtered)
-        }
-        onClickSort={onClickSort}
-        onClickRow={onRowClick}
-      />
+      {error ? (
+        <h2>{error}</h2>
+      ) : (
+        <UserList
+          field={sortedField}
+          sort={sortConfig}
+          page={page}
+          users={
+            sortedField
+              ? pagePagination(sortedProducts)
+              : pagePagination(filtered)
+          }
+          onClickSort={onClickSort}
+          onClickRow={onRowClick}
+        />
+      )}
 
       {filtered.length > 20 && (
         <PagePaginationButton
@@ -156,6 +162,7 @@ function App() {
           handlePage={handlePage}
         />
       )}
+
       {personalInfo() && <UserInfo user={personalInfo()} />}
     </div>
   )
