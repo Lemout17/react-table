@@ -14,7 +14,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
         Previous
       </button>
       <button
-        className="pag-button active"
+        className="pag-button current-page"
         onClick={() => {
           handlePage(page)
         }}

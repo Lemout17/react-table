@@ -40,14 +40,19 @@ function App() {
   }
 
   //filter by name or state
-  const filterUsers = () =>
-    users.filter(
+  const filterUsers = () => {
+    return users.filter(
       (user) =>
         user.firstName.toLowerCase().includes(filter.toLowerCase()) &&
         user.adress.state.includes(userState)
     )
+  }
 
   const filtered = filterUsers()
+
+  useEffect(() => {
+    setPage(1)
+  }, [filter, userState])
 
   //set userState from component <UserFilterState />
   const onStateChange = (state) => {
@@ -94,16 +99,15 @@ function App() {
 
     if (sortedField === th.dataset.type) {
       if (sortConfig) {
-        setSortConfig(false)
-      } else {
-        setSortConfig(true)
+        return setSortConfig(false)
       }
+      setSortConfig(true)
     }
 
     setSortedField(th.dataset.type)
   }
 
-  if (sortedField !== null) {
+  if (sortedField) {
     sortedProducts.sort((a, b) => {
       let x = a[sortedField]
       let y = b[sortedField]

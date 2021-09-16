@@ -16,7 +16,11 @@ const UserFilterState = ({ users, userState, onChange }) => {
   }, [onChange, val])
 
   const arr = users.map((user) => user.adress.state)
-  const statesArray = ['Filter by state', ...new Set(arr)]
+
+  const statesArray = [
+    'Filter by state',
+    ...[...new Set(arr)].sort((a, b) => a.localeCompare(b)),
+  ]
 
   return (
     <>
