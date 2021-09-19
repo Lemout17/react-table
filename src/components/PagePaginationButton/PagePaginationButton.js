@@ -2,6 +2,7 @@ import './PagePaginationButton.css'
 
 const PagePaginationButton = ({ length, page, handlePage }) => {
   const pages = Math.ceil(length / 20)
+
   return (
     <div className="pag-container">
       {page === 1 ? null : (
@@ -23,6 +24,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
       >
         {page}
       </button>
+
       {page < pages && (
         <button
           className="pag-button"
@@ -33,6 +35,7 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
           {page + 1}
         </button>
       )}
+
       {page < pages - 1 && (
         <button
           className="pag-button"
@@ -43,15 +46,17 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
           {page + 2}
         </button>
       )}
-      <button
-        className="pag-button"
-        disabled={page === pages ? true : false}
-        onClick={() => {
-          handlePage(page + 1)
-        }}
-      >
-        Next
-      </button>
+
+      {page === pages ? null : (
+        <button
+          className="pag-button"
+          onClick={() => {
+            handlePage(page + 1)
+          }}
+        >
+          Next
+        </button>
+      )}
     </div>
   )
 }
