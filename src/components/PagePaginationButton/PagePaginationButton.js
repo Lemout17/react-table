@@ -4,15 +4,17 @@ const PagePaginationButton = ({ length, page, handlePage }) => {
   const pages = Math.ceil(length / 20)
   return (
     <div className="pag-container">
-      <button
-        className="pag-button"
-        disabled={page === 1 ? true : false}
-        onClick={() => {
-          handlePage(page - 1)
-        }}
-      >
-        Previous
-      </button>
+      {page === 1 ? null : (
+        <button
+          className="pag-button"
+          onClick={() => {
+            handlePage(page - 1)
+          }}
+        >
+          Previous
+        </button>
+      )}
+
       <button
         className="pag-button current-page"
         onClick={() => {
